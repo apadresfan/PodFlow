@@ -1,1 +1,23 @@
-{"name":"PodFlow","short_name":"PodFlow","start_url":"./","scope":"./","display":"standalone","background_color":"#141120","theme_color":"#171426","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
+{
+  "name": "PodFlow",
+  "short_name": "PodFlow",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#141120",
+  "theme_color": "#171426",
+  "icons": [
+    {
+      "src": "podflow-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
