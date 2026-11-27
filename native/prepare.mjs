@@ -1,0 +1,17 @@
+import {mkdir,copyFile,readFile,writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const dir=path.dirname(fileURLToPath(import.meta.url)), root=path.dirname(dir), www=path.join(dir,'www');
+await mkdir(www,{recursive:true});
+for(const name of ['index.html','app.js','sw.js','manifest.json','icon.svg','podflow-icon.png','transcribe-worker.js']) await copyFile(path.join(root,name),path.join(www,name));
+let html=await readFile(path.join(www,'index.html'),'utf8');
+html=html.replace(/<span class="app-version"[^>]*>[^<]*<\/span>/,'<span class="app-version" aria-label="Native version 3.0">v3.0 Native</span>');
+await writeFile(path.join(www,'index.html'),html);
+let js=await readFile(path.join(www,'app.js'),'utf8');
+const marker="if('caches'in window){const c=await caches.open(";
+if(!js.includes(marker))throw Error('Offline readiness implementation changed; review native patch.');
+js=js.replace(marker,"if(window.Capacitor?.isNativePlatform?.()){offlineReady=true}else if('caches'in window){const c=await caches.open(");
+js=js.replace("if('serviceWorker'in navigator&&location.protocol.startsWith('http'))","if(!window.Capacitor?.isNativePlatform?.()&&'serviceWorker'in navigator&&location.protocol.startsWith('http'))");
+js=js.replace("offlineReady?'✓ App saved'","offlineReady?(window.Capacitor?.isNativePlatform?.()?'✓ App bundled':'✓ App saved')");
+await writeFile(path.join(www,'app.js'),js);
+console.log('PodFlow 3.0 native web assets prepared.');

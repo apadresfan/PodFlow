@@ -1,0 +1,9 @@
+{
+  "appId": "com.apadresfan.podflow",
+  "appName": "PodFlow",
+  "webDir": "www",
+  "ios": {
+    "contentInset": "automatic",
+    "backgroundColor": "#141120"
+  }
+}
