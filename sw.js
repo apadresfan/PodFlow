@@ -1,4 +1,4 @@
-const CACHE='podflow-shell-v18',ART='podflow-art-v1',FILES=['./','./index.html','./app.js','./app.js?v=18','./transcribe-worker.js?v=12','./manifest.json','./icon.svg','./podflow-icon.png'];
+const CACHE='podflow-shell-v19',ART='podflow-art-v1',FILES=['./','./index.html','./app.js','./app.js?v=19','./transcribe-worker.js?v=12','./manifest.json','./icon.svg','./podflow-icon.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('podflow-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 const absolute=x=>new URL(x,self.registration.scope).href;
