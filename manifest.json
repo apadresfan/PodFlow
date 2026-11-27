@@ -8,8 +8,14 @@
   "theme_color": "#13b7c4",
   "icons": [
     {
-      "src": "podflow-icon.png",
+      "src": "podflow-icon.png?v=22",
       "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "podflow-icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },

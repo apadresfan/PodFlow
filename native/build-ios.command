@@ -13,7 +13,7 @@ if [[ ! -d ios ]]; then npx cap add ios; fi
 npx cap sync ios
 ICON_DIR="ios/App/App/Assets.xcassets/AppIcon.appiconset"
 if [[ -d "$ICON_DIR" ]]; then
-  sips -s format png -z 1024 1024 ../podflow-icon.png --out "$ICON_DIR/AppIcon-1024.png" >/dev/null
+  sips -s format png -z 1024 1024 ../podflow-icon-512.png --out "$ICON_DIR/AppIcon-1024.png" >/dev/null
   node --input-type=module -e 'import fs from "node:fs";fs.writeFileSync(process.argv[1],JSON.stringify({images:[{filename:"AppIcon-1024.png",idiom:"universal",platform:"ios",size:"1024x1024"}],info:{author:"xcode",version:1}},null,2))' "$ICON_DIR/Contents.json"
 fi
 npx cap open ios
