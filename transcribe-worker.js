@@ -1,0 +1,5 @@
+let transcriber;
+self.onmessage=async({data})=>{try{
+ if(!transcriber){self.postMessage({status:'Loading English speech model…'});const {pipeline,env}=await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1');env.allowLocalModels=false;env.backends.onnx.wasm.numThreads=1;transcriber=await pipeline('automatic-speech-recognition','Xenova/whisper-tiny.en',{device:'wasm',dtype:'q8',progress_callback:p=>{if(p.status==='progress')self.postMessage({status:'Loading model '+Math.round(p.progress||0)+'%'})}})}
+ const result=await transcriber(data.samples,{return_timestamps:true,chunk_length_s:30,stride_length_s:5});const chunks=result.chunks||[];self.postMessage({lines:chunks.length?chunks.map(c=>({t:data.offset+(c.timestamp?.[0]||0),text:c.text.trim()})):[{t:data.offset,text:result.text.trim()}]});
+}catch(e){self.postMessage({error:String(e.message||e)})}};
