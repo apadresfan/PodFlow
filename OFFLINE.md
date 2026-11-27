@@ -1,0 +1,5 @@
+# Offline listening (PodFlow 2.7)
+
+Install from Safari via Add to Home Screen. Open the installed app online, choose Prepare offline, download episodes and wait for completion. The dashboard verifies the shell cache and lists locally saved audio and transcripts. Test by turning on airplane mode AND disabling Wi-Fi, closing and reopening the installed app, then playing a downloaded episode and checking progress after reopening. Reconnect to refresh subscriptions without interrupting playback.
+
+The application shell is cache-first; artwork is best-effort cached separately. Audio stays in the original IndexedDB store. No audio or transcripts are deleted during this upgrade. Storage persistence is requested, not guaranteed; iOS may evict web storage. Saved transcripts can be read offline; new AI transcription may require model assets and internet. Streaming, discovery and RSS refresh need internet. Automatic feed refresh runs when connectivity returns while the app is open, not as an iOS background task. Physical-device validation remains required.
