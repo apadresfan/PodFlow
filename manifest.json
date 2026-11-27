@@ -4,8 +4,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#141120",
-  "theme_color": "#171426",
+  "background_color": "#edf8fa",
+  "theme_color": "#13b7c4",
   "icons": [
     {
       "src": "podflow-icon.png",
